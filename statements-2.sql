@@ -33,6 +33,7 @@ COMMIT;
 BEGIN;
     DELETE from PlayerStats WHERE ps_name = 'John Doe'; -- delete all of John Doe's stats
     DELETE from Player WHERE p_name = 'John Doe'; -- delete John Doe
+    DELETE from PlayerToTeam WHERE pname = 'John Doe'; -- delete John Doe from the many to many table
 COMMIT;
 
 select * from PlayerStats where ps_name = 'John Doe'; -- demonstrate that his stats are gone
