@@ -21,7 +21,7 @@ COMMIT;
 
 SELECT * FROM PlayerStats as ps
     join Player as p on p.p_name = ps.ps_name
-WHERE ps_name = 'John Doe'; -- get all of John Doe's stats
+WHERE ps.ps_name = 'John Doe'; -- get all of John Doe's stats
 
 
 BEGIN;
