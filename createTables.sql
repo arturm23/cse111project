@@ -41,8 +41,8 @@ CREATE TABLE Game (
 CREATE TABLE Stadium (
     st_teamName   varchar(255) not null,
     st_stadiumName   varchar(255) not null,
-    st_weather   varchar(255) not null,
-    st_capacity varchar(255) not null
+    st_capacity varchar(255) not null,
+    st_surface varchar(255) not null
 );
 
 CREATE TABLE playerToTeam (
