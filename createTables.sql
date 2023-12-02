@@ -1,7 +1,17 @@
+DROP TABLE IF EXISTS Player;
+DROP TABLE IF EXISTS PlayerStats;
+DROP TABLE IF EXISTS Team;
+DROP TABLE IF EXISTS TeamStats;
+DROP TABLE IF EXISTS TeamRankings;
+DROP TABLE IF EXISTS Seasons;
+DROP TABLE IF EXISTS Game;
+DROP TABLE IF EXISTS Stadium;
+
 CREATE TABLE Player (
     p_name   varchar(255) not null,
     p_teamName   varchar(255) not null,
-    p_year   varchar(255) not null
+    p_year   varchar(255) not null,
+    p_number varchar(255) not null
 );
 
 CREATE TABLE PlayerStats (
@@ -32,11 +42,6 @@ CREATE TABLE Seasons (
     s_winner varchar(255) not null
 );
 
-CREATE TABLE Game (
-    g_date   varchar(255) not null,
-    g_home   varchar(255) not null,
-    g_away   varchar(255) not null
-);
 
 CREATE TABLE Stadium (
     st_teamName   varchar(255) not null,
@@ -45,23 +50,13 @@ CREATE TABLE Stadium (
     st_surface varchar(255) not null
 );
 
-CREATE TABLE playerToTeam (
-    pname not null,
-    tname not null
-)
+-- CREATE TABLE playerToTeam (
+--     pname varchar(255) not null,
+--     tname varchar(255) not null
+-- )
 
-CREATE TABLE teamToSeason (
-    tts_year varchar(255) not null,
-    tts_tname varchar(255) not null
-)
+-- CREATE TABLE teamToSeason (
+--     tts_year varchar(255) not null,
+--     tts_tname varchar(255) not null
+-- )
 
-
-
-DROP TABLE Player;
-DROP TABLE PlayerStats;
-DROP TABLE Team;
-DROP TABLE TeamStats;
-DROP TABLE TeamRankings;
-DROP TABLE Seasons;
-DROP TABLE Game;
-DROP TABLE Stadium;

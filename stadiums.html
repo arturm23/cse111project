@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CSE 111</title>
+  <link href="style.css" rel="stylesheet">
+  <script src="stadiums.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body onload="getData()">
+    <div class="nav">
+        <ul>
+            <li><a href="#">Player Stats</a></li>
+            <li><a href="#">Team Stats</a></li>
+            <li><a href="stadiums.html">Stadiums</a></li>
+            <li><a href="#">Seasons</a></li>
+            <li><a href="#">Add Player</a></li>
+        </ul>
+    </div>
+    <div class="stadiums">
+      <table id="stadiumsTable"> 
+        <thead>
+          <tr>
+            <th>
+                Team Name 
+                <button id="teamNameButton"></button>
+            </th>
+            <th>
+                Stadium Name
+                <button id="stadiumNameButton"></button>
+            </th>
+            <th>
+                Stadium Capacity
+                <button id="stadiumCapacityButton"></button>
+            </th>
+            <th>
+                Stadium Surface
+                <button id="stadiumSurfaceButton"></button>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="stadiumsBody">
+
+        </tbody>
+      </table>
+    </div>
+</body>
+
+</html>
