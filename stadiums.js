@@ -4,9 +4,35 @@ const apiURL = "http://127.0.0.1:5000"
 
 var stadiumData = null
 
+var arrowDirections = []
+
+arrowDirections.push({name: 'st_teamName', direction: 'up'})
+arrowDirections.push({name: 'st_stadiumName', direction: 'up'})
+arrowDirections.push({name: 'st_capacity', direction: 'up'})
+arrowDirections.push({name: 'st_surface', direction: 'up'})
+
 const getData = async () => {
     const response = await fetch(`${apiURL}/stadiums`);
     const myJson = await response.json();
+
+    stadiumData = myJson
+
+    displayData()
+}
+
+const getDataSorted = async (column, dir) => {
+    const response = await fetch(`${apiURL}/stadiums/${column}/${dir}`);
+    const myJson = await response.json();
+
+    for(let i = 0; i < arrowDirections.length; i++) { 
+        if(arrowDirections[i].name == column) {
+            if (arrowDirections[i].direction == 'up') {
+                arrowDirections[i].direction == 'down'
+            } else if (arrowDirections[i].direction == 'down') {
+                arrowDirections[i].direction == 'up'
+            } 
+        }
+    }
 
     stadiumData = myJson
 
@@ -42,8 +68,19 @@ function updateButtons() {
     var stadiumCapacityButton = document.getElementById('stadiumCapacityButton')
     var stadiumSurfaceButton = document.getElementById('stadiumSurfaceButton')
 
-    teamNameButton.innerHTML = '^'
-    stadiumNameButton.innerHTML = '^'
-    stadiumCapacityButton.innerHTML = '^'
-    stadiumSurfaceButton.innerHTML = '^'
+    var arr = [];
+    arr.push(teamNameButton)
+    arr.push(stadiumNameButton)
+    arr.push(stadiumCapacityButton)
+    arr.push(stadiumSurfaceButton)
+    
+    for(let i = 0; i < arr.length; i++) {
+        if (arrowDirections[i].direction == 'up') {
+            arr[i].innerHTML = '^'
+            arr[i].addEventListener('click', getDataSorted(arrowDirections[i].name, 'DESC'))
+        } else if (arrowDirections[i].direction == 'down') {
+            arr[i].innerHTML = '>'
+            arr[i].addEventListener('click', getDataSorted(arrowDirections[i].name, 'ASC'))
+        }
+    }
 }
