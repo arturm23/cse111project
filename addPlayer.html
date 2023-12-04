@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CSE 111</title>
+  <link href="style.css" rel="stylesheet">
+  <script src="addPlayer.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="nav">
+        <ul>
+            <li><a href="playerStats.html">Player Stats</a></li>
+            <li><a href="teamStats.html">Team Stats</a></li>
+            <li><a href="stadiums.html">Stadiums</a></li>
+            <li><a href="seasons.html">Seasons</a></li>
+            <li><a href="addPlayer.html">Add Player</a></li>
+        </ul>
+    </div>
+
+    <div class="addPlayer">
+        <p>Add a Player</p>
+        <form id="addPlayer"> 
+          <label for="name">Name</label>
+          <input type="text" id="addName">
+
+          <label for="teamName">Team Name</label>
+          <input type="text" id="addTeamName">
+
+          <label for="year">Year</label>
+          <input type="text" id="addYear">
+
+          <label for="number">Number</label>
+          <input type="text" id="addNumber">
+
+          <label for="height">Height</label>
+          <input type="text" id="addHeight">
+
+          <label for="weight">Weight</label>
+          <input type="text" id="addWeight">
+
+          <label for="position">Position</label>
+          <input type="text" id="addPosition">
+
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+</body>
+
+</html>

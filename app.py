@@ -104,5 +104,43 @@ def getPlayerStatsSorted(column, dir):
     # Return the result as JSON
     return jsonify(playerStats_list)
 
+@app.route('/addPlayer', methods=['POST'])
+def addPlayer():
+    conn = get_db_connection()
+   
+    request_data = request.get_json()
+    name = request_data.get("name")
+    teamName = request_data.get("teamName")
+    year = request_data.get("year")
+    number = request_data.get("number")
+    height = request_data.get("height")
+    weight = request_data.get("weight")
+    position = request_data.get("position")
+
+    insert_statement = """
+    INSERT INTO player (p_name, p_teamName, p_year, p_number)
+    VALUES (?, ?, ?, ?)
+    """
+    insert_statement2 = """
+    INSERT INTO playerStats (ps_name, ps_height, ps_weight, ps_position)
+    VALUES (?, ?, ?, ?)
+    """
+    conn.execute(insert_statement, (name, teamName, year, number))
+    conn.execute(insert_statement2, (name, height, weight, position))
+
+    conn.commit()
+    # return doesnt matter 
+    seasons = conn.execute('SELECT * FROM seasons').fetchall()
+    conn.close()
+
+    seasons_list = [dict(row) for row in seasons]
+
+    # Return the result as JSON
+    return jsonify(seasons_list)
+
+
+
+    
+
 if __name__ == "__main__":
     app.run()
