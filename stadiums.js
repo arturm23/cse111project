@@ -11,6 +11,13 @@ arrowDirections.push({name: 'st_stadiumName', direction: 'up'})
 arrowDirections.push({name: 'st_capacity', direction: 'up'})
 arrowDirections.push({name: 'st_surface', direction: 'up'})
 
+var divToColumn = []
+divToColumn.push({column: 'st_teamName', div: 'teamNameButton'})
+divToColumn.push({column: 'st_stadiumName', div: 'stadiumNameButton'})
+divToColumn.push({column: 'st_capacity', div: 'stadiumCapacityButton'})
+divToColumn.push({column: 'st_surface', div: 'stadiumSurfaceButton'})
+
+
 const getData = async () => {
     const response = await fetch(`${apiURL}/stadiums`);
     const myJson = await response.json();
@@ -20,17 +27,33 @@ const getData = async () => {
     displayData()
 }
 
-const getDataSorted = async (column, dir) => {
+const getDataSorted = async (div, dir) => {
+    let column = ""
+    let updated = -1
+
+    for(let i = 0; i < divToColumn.length; i++) {
+        console.log(div, divToColumn[i].div)
+        if (div == divToColumn[i].div) {
+            column = divToColumn[i].column
+        }
+    }
     const response = await fetch(`${apiURL}/stadiums/${column}/${dir}`);
-    const myJson = await response.json();
+    const myJson = await response.json(); 
 
     for(let i = 0; i < arrowDirections.length; i++) { 
         if(arrowDirections[i].name == column) {
+            updated = i
             if (arrowDirections[i].direction == 'up') {
-                arrowDirections[i].direction == 'down'
+                arrowDirections[i].direction = 'down'
             } else if (arrowDirections[i].direction == 'down') {
-                arrowDirections[i].direction == 'up'
+                arrowDirections[i].direction = 'up'
             } 
+        }
+    }
+
+    for(let i = 0; i < arrowDirections.length; i++) {
+        if (i != updated) {
+            arrowDirections[i].direction = 'up'
         }
     }
 
@@ -63,24 +86,47 @@ function displayData() {
 }
 
 function updateButtons() {
+    var teamNameDiv = document.getElementById('teamNameDiv')
+    var stadiumNameDiv = document.getElementById('stadiumNameDiv')
+    var stadiumCapacityDiv = document.getElementById('stadiumCapacityDiv')
+    var stadiumSurfaceDiv = document.getElementById('stadiumSurfaceDiv')
+
     var teamNameButton = document.getElementById('teamNameButton')
     var stadiumNameButton = document.getElementById('stadiumNameButton')
     var stadiumCapacityButton = document.getElementById('stadiumCapacityButton')
     var stadiumSurfaceButton = document.getElementById('stadiumSurfaceButton')
 
-    var arr = [];
+
+    let arr = [];
     arr.push(teamNameButton)
     arr.push(stadiumNameButton)
     arr.push(stadiumCapacityButton)
     arr.push(stadiumSurfaceButton)
+
+    let divArr = []
+    divArr.push(teamNameDiv)
+    divArr.push(stadiumNameDiv)
+    divArr.push(stadiumCapacityDiv)
+    divArr.push(stadiumSurfaceDiv)
+
+
+    for (let i = 0; i < arr.length; i++) {
+        // console.log(divArr[i])
+        // console.log(arr[i])
+        let button = document.createElement('button');
+        button.id = arr[i].id;
     
-    for(let i = 0; i < arr.length; i++) {
         if (arrowDirections[i].direction == 'up') {
-            arr[i].innerHTML = '^'
-            arr[i].addEventListener('click', getDataSorted(arrowDirections[i].name, 'DESC'))
+            button.innerText = '^';
+            button.setAttribute('onClick', `getDataSorted(this.id, 'Desc')`)
         } else if (arrowDirections[i].direction == 'down') {
-            arr[i].innerHTML = '>'
-            arr[i].addEventListener('click', getDataSorted(arrowDirections[i].name, 'ASC'))
+            button.innerText = 'v';
+            button.setAttribute('onClick', `getDataSorted(this.id, 'Asc')`)
         }
+    
+        divArr[i].replaceChild(button, arr[i]);
     }
+
 }
+
+
