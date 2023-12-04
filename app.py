@@ -58,6 +58,29 @@ def getTeamStatsSorted(column, dir):
     # Return the result as JSON
     return jsonify(teamStats_list)
 
+@app.route('/seasons')
+def getSeasons():
+    conn = get_db_connection()
+    stadiums = conn.execute('SELECT * FROM seasons').fetchall()
+    conn.close()
+
+    stadiums_list = [dict(row) for row in stadiums]
+
+    # Return the result as JSON
+    return jsonify(stadiums_list)
+
+@app.route('/seasons/<column>/<dir>')
+def getSeasonsSorted(column, dir):
+    conn = get_db_connection()
+    query = f'SELECT * FROM seasons ORDER BY {column} {dir}'
+    stadiums = conn.execute(query).fetchall()
+    conn.close()
+
+    stadiums_list = [dict(row) for row in stadiums]
+
+    # Return the result as JSON
+    return jsonify(stadiums_list)
+
 
 if __name__ == "__main__":
     app.run()

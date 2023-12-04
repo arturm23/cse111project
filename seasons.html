@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CSE 111</title>
+  <link href="style.css" rel="stylesheet">
+  <script src="seasons.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body onload="getData()">
+    <div class="nav">
+        <ul>
+            <li><a href="#">Player Stats</a></li>
+            <li><a href="teamStats.html">Team Stats</a></li>
+            <li><a href="stadiums.html">Stadiums</a></li>
+            <li><a href="seasons.html">Seasons</a></li>
+            <li><a href="#">Add Player</a></li>
+        </ul>
+    </div>
+    <div class="seasons">
+      <table id="seasonsTable"> 
+        <thead>
+          <tr>
+            <th>
+                Year 
+                <div id="yearDiv">
+                    <button id="yearButton"></button>
+                </div>
+               
+            </th>
+            <th>
+                Winner
+                <div id="winnerDiv">
+                    <button id="winnerButton"></button>
+                </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="seasonsBody">
+
+        </tbody>
+      </table>
+    </div>
+</body>
+
+</html>
