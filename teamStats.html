@@ -3,21 +3,21 @@
 <head>
   <title>CSE 111</title>
   <link href="style.css" rel="stylesheet">
-  <script src="stadiums.js"></script>
+  <script src="teamStats.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body onload="getData()">
     <div class="nav">
         <ul>
-            li><a href="#">Player Stats</a></li>
+            <li><a href="#">Player Stats</a></li>
             <li><a href="teamStats.html">Team Stats</a></li>
             <li><a href="stadiums.html">Stadiums</a></li>
             <li><a href="#">Seasons</a></li>
             <li><a href="#">Add Player</a></li>
         </ul>
     </div>
-    <div class="stadiums">
-      <table id="stadiumsTable"> 
+    <div class="teamStats">
+      <table id="teamStatsTable"> 
         <thead>
           <tr>
             <th>
@@ -28,27 +28,26 @@
                
             </th>
             <th>
-                Stadium Name
-                <div id="stadiumNameDiv">
-                    <button id="stadiumNameButton"></button>
+                Wins
+                <div id="teamWinsDiv">
+                    <button id="teamWinsButton"></button>
                 </div>
             </th>
             <th>
-                Stadium Capacity
-                <div id="stadiumCapacityDiv">
-                    <button id="stadiumCapacityButton"></button>
+                Losses
+                <div id="teamLossesDiv">
+                    <button id="teamLossesButton"></button>
                 </div>
-                
             </th>
             <th>
-                Stadium Surface
-                <div id="stadiumSurfaceDiv">
-                    <button id="stadiumSurfaceButton"></button>
+                Ranking
+                <div id="teamRankingDiv">
+                    <button id="teamRankingButton"></button>
                 </div>
             </th>
           </tr>
         </thead>
-        <tbody id="stadiumsBody">
+        <tbody id="teamStatsBody">
 
         </tbody>
       </table>

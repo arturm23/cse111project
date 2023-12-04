@@ -35,6 +35,29 @@ def getStadiumsSorted(column, dir):
     # Return the result as JSON
     return jsonify(stadiums_list)
 
+@app.route('/teamStats')
+def getTeamStats():
+    conn = get_db_connection()
+    teamStats = conn.execute('SELECT DISTINCT t_name, ts_wins, ts_losses, tr_rank FROM teamStats, team, teamrankings WHERE t_name = ts_name AND t_name = tr_name').fetchall()
+    conn.close()
+
+    teamStats_list = [dict(row) for row in teamStats]
+
+    # Return the result as JSON
+    return jsonify(teamStats_list)
+
+@app.route('/teamStats/<column>/<dir>')
+def getTeamStatsSorted(column, dir):
+    conn = get_db_connection()
+    query = f'SELECT DISTINCT t_name, ts_wins, ts_losses, tr_rank FROM teamStats, team, teamrankings WHERE t_name = ts_name AND t_name = tr_name ORDER BY {column} {dir}'
+    teamStats = conn.execute(query).fetchall()
+    conn.close()
+
+    teamStats_list = [dict(row) for row in teamStats]
+
+    # Return the result as JSON
+    return jsonify(teamStats_list)
+
 
 if __name__ == "__main__":
     app.run()
